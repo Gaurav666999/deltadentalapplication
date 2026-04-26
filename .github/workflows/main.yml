@@ -44,12 +44,10 @@ jobs:
         run: |
           docker push $ACR_LOGIN_SERVER/$IMAGE_NAME:$IMAGE_TAG
                 # ✅ AKS CONTEXT SET
-      - name: Set AKS context
-        uses: Azure/aks-set-context@v3
-        with:
-          resource-group: psddg
-          cluster-name: devtodoakswestus
-
+      - name: Log in to ACR
+        run: |
+          az account set --subscription 20cadb7c-62d8-4c57-9b49-63ebd307c63e
+          az aks get-credentials --resource-group psddg --name devtodoakswestus --overwrite-existing
       # ✅ VERIFY
       - name: Verify cluster connection
         run: kubectl get nodes
