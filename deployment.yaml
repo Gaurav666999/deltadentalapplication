@@ -1,22 +1,49 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: add-task
+  name: ui-task
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: add-task
+      app: ui-task
   template:
     metadata:
       labels:
-        app: add-task
+        app: ui-task
     spec:
       containers:
-      - name: add-task
+      - name: ui-task
         env:
           - name: CONNECTION_STRING
             value: "Driver={ODBC Driver 17 for SQL Server};Server=tcp:devtododbsrvwuswus1.database.windows.net,1433;Database=todoappdb;Uid=devopsadmin;Pwd=P@ssw01rd@123;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;"
         image: todo-ui
         ports:
         - containerPort: 8000
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ui-task
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ui-task
+  template:
+    metadata:
+      labels:
+        app: ui-task
+    spec:
+      containers:
+      - name: ui-task
+        env:
+          - name: CONNECTION_STRING
+            value: "Driver={ODBC Driver 17 for SQL Server};Server=tcp:devtododbsrvwuswus1.database.windows.net,1433;Database=todoappdb;Uid=devopsadmin;Pwd=P@ssw01rd@123;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;"
+        image: Microtodo-ui
+        ports:
+        - containerPort: 8080
+
+
