@@ -51,8 +51,10 @@ jobs:
           az aks command invoke \
             --resource-group psddg \
             --name devtodoakswestus \
-            --command "kubectl apply -f deployment.yaml" \
+            --command "kubectl apply -f deployment.yaml && kubectl apply -f service.yaml" \
             --file deployment.yaml
+            --file service.yaml
+            
         
           
           
