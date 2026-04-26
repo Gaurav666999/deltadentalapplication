@@ -50,7 +50,7 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t $IMAGE_NAME1:$IMAGE_TAG1 ./MicroTodoUI
+          docker build -t $IMAGE_NAME1:$IMAGE_TAG1 ./Micro
 
       - name: Tag Docker Image for ACR
         run: |
