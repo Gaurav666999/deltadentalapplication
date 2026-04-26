@@ -35,7 +35,6 @@ jobs:
       - name: Build Docker Image
         run: |
           docker build -t $IMAGE_NAME:$IMAGE_TAG ./AddTaskTodoMicroservice
-          #docker build -t $IMAGE_NAME:$IMAGE_TAG ./MicroTodoUI
 
       - name: Tag Docker Image for ACR
         run: |
