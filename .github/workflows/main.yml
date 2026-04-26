@@ -50,10 +50,10 @@ jobs:
             --resource-group "psddg" \
             --name "devtodoakswestus" \
             --overwrite-existing
-            --command "kubectl apply -f deployment.yaml && kubectl apply -f service.yaml"
+            
 
       - name: Deploy to AKS
         run: |
-          kubectl apply -f deployment.yaml && kubectl apply -f service.yaml
+          kubectl apply -f deployment.yaml
           
           
