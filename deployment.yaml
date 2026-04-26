@@ -42,7 +42,7 @@ spec:
         env:
           - name: CONNECTION_STRING
             value: "Driver={ODBC Driver 17 for SQL Server};Server=tcp:devtododbsrvwuswus1.database.windows.net,1433;Database=todoappdb;Uid=devopsadmin;Pwd=P@ssw01rd@123;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;"
-        image: Microtodo-ui
+        image: microtodo-ui
         ports:
         - containerPort: 8080
 

@@ -14,7 +14,7 @@ jobs:
     env:
       IMAGE_NAME: todo-ui
       IMAGE_TAG: v4
-      IMAGE_NAME1: Microtodo-ui
+      IMAGE_NAME1: microtodo-ui
       IMAGE_TAG1: v1
       ACR_NAME: devtodoacrwestus
       ACR_LOGIN_SERVER: devtodoacrwestus.azurecr.io
@@ -50,7 +50,7 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t $IMAGE_NAME1:$IMAGE_TAG1 ./MicroTodoUI
+          docker build -t $IMAGE_NAME1:$IMAGE_TAG1 ./Micro
 
       - name: Tag Docker Image for ACR
         run: |
