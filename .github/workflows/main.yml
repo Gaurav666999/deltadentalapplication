@@ -60,16 +60,17 @@ jobs:
         run: |
           docker push $ACR_LOGIN_SERVER/$IMAGE_NAME1:$IMAGE_TAG1 
                 # ✅ AKS CONTEXT SET
-      - name: Log in to ACR
-        run: |
-          az account set --subscription 20cadb7c-62d8-4c57-9b49-63ebd307c63e
-          az aks get-credentials --resource-group psddg --name devtodoakswestus --overwrite-existing
-      # ✅ VERIFY
-      - name: Verify cluster connection
-        run: kubectl get nodes
-
-      # ✅ DEPLOY
       - name: Deploy to AKS
         run: |
-          kubectl apply -f deployment.yaml 
-          kubectl apply -f service.yaml
+          # We use 'command invoke' because your runner is having trouble 
+          # resolving the AKS DNS (lookup devtodoaks-... no such host)
+          az aks command invoke \
+            --resource-group psddg \
+            --name devtodoakswestus \
+            --command "kubectl apply -f deployment.yaml && kubectl apply -f service.yaml" \
+            --file deployment.yaml \
+            --file service.yaml
+            
+        
+          
+          
