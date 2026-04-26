@@ -1,34 +1,41 @@
-# Use a slim base image (smaller + faster)
 FROM python:3.9-slim
 
-# Prevent Python from writing pyc files & enable logs
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
-# Install system dependencies (combine into one layer)
-RUN apt-get update && apt-get install -y \
+# Install dependencies safely
+RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     gnupg \
+    ca-certificates \
     unixodbc \
     unixodbc-dev \
-    && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
-    && curl https://packages.microsoft.com/config/debian/11/prod.list > /etc/apt/sources.list.d/mssql-release.list \
+    apt-transport-https \
+    && mkdir -p /etc/apt/keyrings \
+    \
+    # Add Microsoft signing key (modern method)
+    && curl -sSL https://packages.microsoft.com/keys/microsoft.asc \
+    | gpg --dearmor > /etc/apt/keyrings/microsoft.gpg \
+    \
+    # Add repo (use Debian 12 compatible repo)
+    && echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/microsoft.gpg] https://packages.microsoft.com/debian/12/prod bookworm main" \
+    > /etc/apt/sources.list.d/mssql-release.list \
+    \
     && apt-get update \
-    && ACCEPT_EULA=Y apt-get install -y msodbcsql17 \
+    && ACCEPT_EULA=Y apt-get install -y msodbcsql18 \
+    \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Python dependencies first (better caching)
+# Python deps
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy app code
+# App code
 COPY . .
 
-# Expose port
 EXPOSE 8000
 
-# Start FastAPI app
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
