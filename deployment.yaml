@@ -19,7 +19,7 @@ spec:
           - name: CONNECTION_STRING
             value: "Driver={ODBC Driver 17 for SQL Server};Server=tcp:devtododbsrvwuswus1.database.windows.net,1433;Database=todoappdb;Uid=devopsadmin;Pwd=P@ssw01rd@123;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;"
         ports:
-        - containerPort: 8080 # Changed from 8000 to 80 to match Nginx
+        - containerPort: 80 # Changed from 8000 to 80 to match Nginx
 
 ---
 
