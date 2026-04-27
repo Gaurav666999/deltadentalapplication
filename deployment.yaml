@@ -1,47 +1,47 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ui-task-v4  # Unique Name
+  name: add-task-v4  # Unique Name
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: ui-task-v4
+      app: add-task-v4
   template:
     metadata:
       labels:
-        app: ui-task-v4
+        app: add-task-v4
     spec:
       containers:
-      - name: ui-task
-        image: devtodoacrwestus.azurecr.io/todo-ui:v4
+      - name: add-ui
+        image: devtodoacrwestus.azurecr.io/todo-add:v4
         env:
           - name: CONNECTION_STRING
-            value: "Driver={ODBC Driver 17 for SQL Server};Server=tcp:devtododbsrvwuswus1.database.windows.net,1433;Database=todoappdb;Uid=devopsadmin;Pwd=P@ssw01rd@123;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;"
+            value: "Driver={ODBC Driver 17 for SQL Server};Server=tcp:devtododbsrvwuswus1.database.windows.net,1433;Database=todoappdb;addd=devopsadmin;Pwd=P@ssw01rd@123;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;"
         ports:
-        - containerPort: 80 # Changed from 8000 to 80 to match Nginx
+        - containerPort: 8081 # Changed from 8000 to 80 to match Nginx
 
 ---
 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: microtodo-ui-v1 # Unique Name
+  name: microtodo-add-v1 # Unique Name
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: microtodo-ui-v1
+      app: microtodo-add-v1
   template:
     metadata:
       labels:
-        app: microtodo-ui-v1
+        app: microtodo-add-v1
     spec:
       containers:
-      - name: ui-task
-        image: devtodoacrwestus.azurecr.io/microtodo-ui:v1
+      - name: micro-ui
+        image: devtodoacrwestus.azurecr.io/microtodo-add:v1
         env:
           - name: CONNECTION_STRING
-            value: "Driver={ODBC Driver 17 for SQL Server};Server=tcp:devtododbsrvwuswus1.database.windows.net,1433;Database=todoappdb;Uid=devopsadmin;Pwd=P@ssw01rd@123;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;"
+            value: "Driver={ODBC Driver 17 for SQL Server};Server=tcp:devtododbsrvwuswus1.database.windows.net,1433;Database=todoappdb;addd=devopsadmin;Pwd=P@ssw01rd@123;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;"
         ports:
-        - containerPort: 80 # Changed from 8080 to 80 to match Nginx
+        - containerPort: 8080 # Changed from 8080 to 80 to match Nginx
