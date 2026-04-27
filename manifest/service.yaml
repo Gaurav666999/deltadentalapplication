@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: add-task-v4-service
+spec:
+  type: ClusterIP
+  selector:
+    app: add-task-v4
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: microtodo-add-v1-service
+spec:
+  type: ClusterIP
+  selector:
+    app: microtodo-add-v1
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
