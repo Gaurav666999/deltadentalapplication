@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: add-ui
-        image: devtodoacrwestus.azurecr.io/todo-add:v4
+        image: devtodoacrwestus.azurecr.io/todo-ui:latest
         env:
           - name: CONNECTION_STRING
             value: "Driver={ODBC Driver 17 for SQL Server};Server=tcp:devtododbsrvwuswus1.database.windows.net,1433;Database=todoappdb;addd=devopsadmin;Pwd=P@ssw01rd@123;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;"
@@ -39,7 +39,7 @@ spec:
     spec:
       containers:
       - name: micro-ui
-        image: devtodoacrwestus.azurecr.io/microtodo-add:v1
+        image: devtodoacrwestus.azurecr.io/microtodo-ui:latest
         env:
           - name: CONNECTION_STRING
             value: "Driver={ODBC Driver 17 for SQL Server};Server=tcp:devtododbsrvwuswus1.database.windows.net,1433;Database=todoappdb;addd=devopsadmin;Pwd=P@ssw01rd@123;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;"
