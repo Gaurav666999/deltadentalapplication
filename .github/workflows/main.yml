@@ -34,31 +34,31 @@ jobs:
         run: |
           az acr login --name $ACR_NAME
 
-      - name: Build Docker Image
-        run: |
-          docker build -t $IMAGE_NAME:$IMAGE_TAG ./Add
+      # - name: Build Docker Image
+      #   run: |
+      #     docker build -t $IMAGE_NAME:$IMAGE_TAG ./Add
 
-      - name: Tag Docker Image for ACR
-        run: |
-          docker tag $IMAGE_NAME:$IMAGE_TAG $ACR_LOGIN_SERVER/$IMAGE_NAME:$IMAGE_TAG
+      # - name: Tag Docker Image for ACR
+      #   run: |
+      #     docker tag $IMAGE_NAME:$IMAGE_TAG $ACR_LOGIN_SERVER/$IMAGE_NAME:$IMAGE_TAG
           
-      - name: Push Docker Image to ACR
-        run: |
-          docker push $ACR_LOGIN_SERVER/$IMAGE_NAME:$IMAGE_TAG
+      # - name: Push Docker Image to ACR
+      #   run: |
+      #     docker push $ACR_LOGIN_SERVER/$IMAGE_NAME:$IMAGE_TAG
           
           ##########################
 
-      - name: Build Docker Image
-        run: |
-          docker build -t $IMAGE_NAME1:$IMAGE_TAG1 ./Micro
+      # - name: Build Docker Image
+      #   run: |
+      #     docker build -t $IMAGE_NAME1:$IMAGE_TAG1 ./Micro
 
-      - name: Tag Docker Image for ACR
-        run: |
-          docker tag $IMAGE_NAME1:$IMAGE_TAG1 $ACR_LOGIN_SERVER/$IMAGE_NAME1:$IMAGE_TAG1
+      # - name: Tag Docker Image for ACR
+      #   run: |
+      #     docker tag $IMAGE_NAME1:$IMAGE_TAG1 $ACR_LOGIN_SERVER/$IMAGE_NAME1:$IMAGE_TAG1
           
-      - name: Push Docker Image to ACR
-        run: |
-          docker push $ACR_LOGIN_SERVER/$IMAGE_NAME1:$IMAGE_TAG1 
+      # - name: Push Docker Image to ACR
+      #   run: |
+      #     docker push $ACR_LOGIN_SERVER/$IMAGE_NAME1:$IMAGE_TAG1 
                 # ✅ AKS CONTEXT SET
       - name: Deploy to AKS
         run: |
