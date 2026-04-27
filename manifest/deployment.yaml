@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: add-ui
-        #image: devtodoacrwestus.azurecr.io/microtodo-ui:v1
+        image: devtodoacrwestus.azurecr.io/microtodo-ui:v1
         # image: devtodoacrwestus.azurecr.io/todo-ui:latest
         env:
           - name: CONNECTION_STRING
