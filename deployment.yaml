@@ -14,12 +14,12 @@ spec:
     spec:
       containers:
       - name: add-ui
-        image: devtodoacrwestus.azurecr.io/todo-ui:latest
+        image: devtodoacrwestus.azurecr.io/todo-ui:v4
         env:
           - name: CONNECTION_STRING
-            value: "Driver={ODBC Driver 17 for SQL Server};Server=tcp:devtododbsrvwuswus1.database.windows.net,1433;Database=todoappdb;addd=devopsadmin;Pwd=P@ssw01rd@123;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;"
+            value: "Driver={ODBC Driver 17 for SQL Server};Server=tcp:devtododbsrvwuswus1.database.windows.net,1433;Database=todoappdb;Uid=devopsadmin;Pwd=P@ssw01rd@123;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;"
         ports:
-        - containerPort: 8081 # Changed from 8000 to 80 to match Nginx
+        - containerPort: 8080 # Changed from 8000 to 80 to match Nginx
 
 ---
 
@@ -39,9 +39,9 @@ spec:
     spec:
       containers:
       - name: micro-ui
-        image: devtodoacrwestus.azurecr.io/microtodo-ui:latest
+        image: devtodoacrwestus.azurecr.io/microtodo-ui:v1
         env:
           - name: CONNECTION_STRING
-            value: "Driver={ODBC Driver 17 for SQL Server};Server=tcp:devtododbsrvwuswus1.database.windows.net,1433;Database=todoappdb;addd=devopsadmin;Pwd=P@ssw01rd@123;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;"
+            value: "Driver={ODBC Driver 17 for SQL Server};Server=tcp:devtododbsrvwuswus1.database.windows.net,1433;Database=todoappdb;Uid=devopsadmin;Pwd=P@ssw01rd@123;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;"
         ports:
-        - containerPort: 8080 # Changed from 8080 to 80 to match Nginx
+        - containerPort: 80 # Changed from 8080 to 80 to match Nginx
