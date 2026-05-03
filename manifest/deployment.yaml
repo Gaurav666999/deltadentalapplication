@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: add-task-v4  # Unique Name
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: add-task-v4
@@ -29,7 +29,7 @@ kind: Deployment
 metadata:
   name: microtodo-add-v1 # Unique Name
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: microtodo-add-v1
